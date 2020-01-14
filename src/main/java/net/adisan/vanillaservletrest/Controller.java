@@ -37,11 +37,26 @@ public class Controller extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Controller</title>");            
+            out.println("<title>Servlet Controller</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Controller at " + request.getContextPath() + "</h1>");
-            out.println("url: " + request.getRequestURL());
+
+            String[] splitedRoute = {"ppp", "ccc", "ddd"};
+
+            out.println("url: " + request.getRequestURL() + "<br>");
+            out.println("pathInfo: " + request.getPathInfo() + "<br>");
+            String[] splitedPath = request.getPathInfo().split("/");
+            int size = splitedRoute.length;
+            for (int i = 0; i < size; i++) {
+                if (splitedRoute[i].equalsIgnoreCase(splitedPath[i+1])) {
+                    out.println(splitedRoute[i] + " " + splitedPath[i+1] + " OK" + "<br>");
+                } else {
+                    out.println(splitedRoute[i] + " " + splitedPath[i+1] + " KO" + "<br>");
+                }
+
+            }
+
             out.println("</body>");
             out.println("</html>");
         }
